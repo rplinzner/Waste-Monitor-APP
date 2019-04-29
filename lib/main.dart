@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './pages/home_page.dart';
 
-void main() => MainWindow();
+void main() => runApp(MainWindow());
 
 class MainWindow extends StatelessWidget {
   @override
