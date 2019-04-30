@@ -85,14 +85,14 @@ class _HomePageState extends State<HomePage>
   publishProgress() {
     setState(() {
       _percentage = _nextPercentage;
-      if (_nextPercentage > _wasteLevel - 6) {
-        _nextPercentage += 0.3;
-      } else if (_nextPercentage > _wasteLevel - 2) {
+      if (_nextPercentage > _wasteLevel - 2) {
         _nextPercentage += 0.1;
+      } else if (_nextPercentage > _wasteLevel - 6) {
+        _nextPercentage += 0.3;
       } else if (_nextPercentage > _wasteLevel - 12) {
         _nextPercentage += 0.8;
       } else {
-        _nextPercentage += 1.3;
+        _nextPercentage += 1.4;
       }
 
       if (_nextPercentage > 100.0) {
