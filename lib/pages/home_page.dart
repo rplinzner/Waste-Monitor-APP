@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'dart:async';
 import 'dart:math';
 import '../helpers/connection.dart';
+import '../helpers/data_extractor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,12 +19,16 @@ class _HomePageState extends State<HomePage>
   AnimationController _progressAnimationController;
   double _wasteLevel;
   Color _stateColor;
+  bool _didRun;
+  DataExtractor _dataExtractor;
 
   @override
   void initState() {
     _percentage = 0.0;
     _nextPercentage = 0.0;
-    _wasteLevel = 67.6;
+    _wasteLevel = 0.0;
+    _didRun = false;
+    _dataExtractor = DataExtractor();
     setColors();
     initAnimationController();
     _timer = null;
@@ -124,8 +129,21 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+  loadData() {
+    _dataExtractor.getLatestWasteLevel().then((value) {
+      _wasteLevel = value * 100;
+      setColors();
+      startProgress();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_didRun == false) {
+      loadData();
+      _didRun = true;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Waste Monitor'),
@@ -145,15 +163,8 @@ class _HomePageState extends State<HomePage>
             ),
             OutlineButton(
               child: Text("Refresh"),
-              onPressed: () async {
-                var rng = Random();
-                var connection = Connection();
-
-                connection.getLatestResponse().then((value) {
-                  _wasteLevel = value * 100;
-                  setColors();
-                  startProgress();
-                });
+              onPressed: () {
+                loadData();
               },
             )
           ],
