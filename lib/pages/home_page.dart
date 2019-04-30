@@ -3,6 +3,7 @@ import '../painters/progress_painter.dart';
 import 'dart:ui';
 import 'dart:async';
 import 'dart:math';
+import '../helpers/connection.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -144,11 +145,15 @@ class _HomePageState extends State<HomePage>
             ),
             OutlineButton(
               child: Text("Refresh"),
-              onPressed: () {
+              onPressed: () async {
                 var rng = Random();
-                _wasteLevel = rng.nextInt(100).toDouble();
-                setColors();
-                startProgress();
+                var connection = Connection();
+
+                connection.getLatestResponse().then((value) {
+                  _wasteLevel = value * 100;
+                  setColors();
+                  startProgress();
+                });
               },
             )
           ],
