@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage>
     //TODO: Enable back fetching data from server
     //_dataExtractor.getLatestWasteLevel().then((value) {
     //_wasteLevel = value * 100;
-    _wasteLevel = 45;
+    _wasteLevel = 90;
     setColors();
     startProgress();
     //});

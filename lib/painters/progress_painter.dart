@@ -23,39 +23,26 @@ class ProgressPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = new Rect.fromLTWH(-30.0, 0.0, size.width, size.height);
-    final gradient = new SweepGradient(
-      startAngle: 3 * pi / 2,
-      endAngle: 7 * pi / 2,
-      tileMode: TileMode.repeated,
-      colors: [Colors.green, Colors.orange, Colors.red],
-    );
-
-    final paint = new Paint()
-      ..shader = gradient.createShader(rect)
-      ..strokeCap = StrokeCap.round // StrokeCap.round is not recommended.
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = circleWidth;
-    final center = new Offset(size.width / 2, size.height / 2);
-    final radius = min(size.width / 2, size.height / 2);
+    var color1 = Colors.red;
+    var color2 = Colors.green;
+    var w1 = completedPercentage / 100;
+    var w2 = 1 - w1;
+    var finalColor = [
+      (color1.red * w1 + color2.red * w2).round(),
+      (color1.green * w1 + color2.green * w2).round(),
+      (color1.blue * w1 + color2.blue * w2).round()
+    ];
+    final paint1 = getPaint(
+        Color.fromRGBO(finalColor[0], finalColor[1], finalColor[2], 1));
     Paint defaultCirclePaint = getPaint(defaultCircleColor);
+    //Paint progressCirclePaint = getPaint(percentageCompletedCircleColor);
+
+    Offset center = Offset(size.width / 2, size.height / 2);
+    double radius = min(size.width / 2, size.height / 2);
     canvas.drawCircle(center, radius, defaultCirclePaint);
     double arcAngle = 2 * pi * (completedPercentage / 100);
-    final startAngle = -pi / 2;
-    final sweepAngle = 2 * pi * completedPercentage;
     canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
-        arcAngle, false, paint);
-
-    //OLD
-    //     Paint defaultCirclePaint = getPaint(defaultCircleColor);
-    // Paint progressCirclePaint = getPaint(percentageCompletedCircleColor);
-
-    // Offset center = Offset(size.width / 2, size.height / 2);
-    // double radius = min(size.width / 2, size.height / 2);
-    // canvas.drawCircle(center, radius, defaultCirclePaint);
-    // double arcAngle = 2 * pi * (completedPercentage / 100);
-    // canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
-    //     arcAngle, false, progressCirclePaint);
+        arcAngle, false, paint1);
   }
 
   @override
