@@ -23,10 +23,11 @@ class ProgressPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var color1 = Colors.red;
-    var color2 = Colors.green;
-    var w1 = completedPercentage / 100;
-    var w2 = 1 - w1;
+    var color1 = Colors.green;
+    var color2 = Colors.red;    
+    var w2 = completedPercentage / 100;
+    var w1 = 1 - w2;
+    
     var finalColor = [
       (color1.red * w1 + color2.red * w2).round(),
       (color1.green * w1 + color2.green * w2).round(),
