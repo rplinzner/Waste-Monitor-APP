@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../painters/progress_painter.dart';
 import 'dart:ui';
 import 'dart:async';
-import 'dart:math';
-import '../helpers/connection.dart';
 import '../helpers/data_extractor.dart';
 
 class HomePage extends StatefulWidget {
+  final double initialValue;
+  HomePage({this.initialValue = 0});
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage>
   AnimationController _progressAnimationController;
   double _wasteLevel;
   Color _stateColor;
-  bool _didRun;
   DataExtractor _dataExtractor;
 
   @override
@@ -27,12 +26,11 @@ class _HomePageState extends State<HomePage>
     _percentage = 0.0;
     _nextPercentage = 0.0;
     _wasteLevel = 0.0;
-    _didRun = false;
     _dataExtractor = DataExtractor();
     setColors();
     initAnimationController();
     _timer = null;
-
+    loadFirst(widget.initialValue);
     super.initState();
   }
 
@@ -129,23 +127,22 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  loadData() {
-    //TODO: Enable back fetching data from server
-    //_dataExtractor.getLatestWasteLevel().then((value) {
-    //_wasteLevel = value * 100;
-    _wasteLevel = 90;
+  loadFirst(double value) {
+    _wasteLevel = value * 100;
     setColors();
     startProgress();
-    //});
+  }
+
+  loadData() {
+    _dataExtractor.getLatestWasteLevel().then((value) {
+      _wasteLevel = value * 100;
+      setColors();
+      startProgress();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_didRun == false) {
-      loadData();
-      _didRun = true;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Waste Monitor'),
