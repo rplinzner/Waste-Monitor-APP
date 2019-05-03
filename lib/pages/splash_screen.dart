@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.only(bottom: 20.0),
                   ),
                   Text(
-                    'More then just trash',
+                    'More than just trash',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
