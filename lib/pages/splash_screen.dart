@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   callHomeScreen() {
     _dataExtractor.getLatestWasteLevel().then((value) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => HomePage(
