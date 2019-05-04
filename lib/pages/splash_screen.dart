@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   callHomeScreen() {
     _dataExtractor.getLatestWasteLevel().then((value) {
-      Navigator.pushReplacement(
+      Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => HomePage(
@@ -48,8 +48,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      'assets/waste_monitor_logo.PNG',
-                      scale: 1.5,
+                      'assets/WasteMonitor_logo_big.png',
+                      scale: 4.6,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 24.0),
                     ),
                     Text(
                       'WasteMonitor',
