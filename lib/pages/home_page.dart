@@ -159,6 +159,9 @@ class _HomePageState extends State<HomePage>
             ),
             OutlineButton(
               child: Text("Refresh"),
+              color: Colors.orangeAccent,
+              splashColor: Colors.purple,
+              highlightColor: Colors.orangeAccent,
               onPressed: () {
                 loadData();
               },

@@ -26,11 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
           MaterialPageRoute(
               builder: (context) => Navigation(
                     initialFillValue: value,
-                  )
-              // HomePage(
-              //       initialValue: value,
-              //     )
-              ));
+                  )));
     });
   }
 

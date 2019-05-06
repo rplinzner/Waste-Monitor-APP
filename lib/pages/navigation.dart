@@ -3,6 +3,7 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 
 import 'home_page.dart';
 import 'some_another_page.dart';
+import 'charts_demo.dart';
 
 class Navigation extends StatefulWidget {
   final double initialFillValue;
@@ -17,7 +18,11 @@ class _NavigationState extends State<Navigation> {
   //List<String> _titles;
   @override
   void initState() {
-    _pages = [HomePage(initialValue: widget.initialFillValue), SomePage()];
+    _pages = [
+      HomePage(initialValue: widget.initialFillValue),
+      SomePage(),
+      ChartsDemo.withSampleData()
+    ];
     //_titles = ["Some title", "Some title 2"];
     currentIndex = 0;
     super.initState();
@@ -68,7 +73,18 @@ class _NavigationState extends State<Navigation> {
                 Icons.access_time,
                 color: Colors.deepPurple,
               ),
-              title: Text("Another Home"))
+              title: Text("Another Home")),
+          BubbleBottomBarItem(
+              backgroundColor: Colors.deepOrange,
+              icon: Icon(
+                Icons.check_circle,
+                color: Colors.black,
+              ),
+              activeIcon: Icon(
+                Icons.check_circle,
+                color: Colors.deepOrange,
+              ),
+              title: Text("Animated Charts"))
         ],
       ),
     );
