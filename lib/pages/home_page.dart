@@ -144,9 +144,6 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Waste Monitor'),
-      ),
       body: Container(
         alignment: Alignment.center,
         child: Column(

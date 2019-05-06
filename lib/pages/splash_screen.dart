@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import '../helpers/data_extractor.dart';
+import 'navigation.dart';
 import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,9 +24,13 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => HomePage(
-                    initialValue: value,
-                  )));
+              builder: (context) => Navigation(
+                    initialFillValue: value,
+                  )
+              // HomePage(
+              //       initialValue: value,
+              //     )
+              ));
     });
   }
 
