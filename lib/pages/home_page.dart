@@ -3,6 +3,7 @@ import '../painters/progress_painter.dart';
 import 'dart:ui';
 import 'dart:async';
 import '../helpers/data_extractor.dart';
+import '../helpers/connection.dart';
 
 class HomePage extends StatefulWidget {
   final double initialValue;
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage>
   double _wasteLevel;
   Color _stateColor;
   DataExtractor _dataExtractor;
+  Connection _connection;
 
   @override
   void initState() {
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage>
     _nextPercentage = 0.0;
     _wasteLevel = 0.0;
     _dataExtractor = DataExtractor();
+    _connection = Connection();
     setColors();
     initAnimationController();
     _timer = null;
@@ -133,6 +136,12 @@ class _HomePageState extends State<HomePage>
     startProgress();
   }
 
+  refreshData() {
+    _connection.refresh().then((value) {
+      loadData();
+    });
+  }
+
   loadData() {
     _dataExtractor.getLatestWasteLevel().then((value) {
       _wasteLevel = value * 100;
@@ -163,7 +172,7 @@ class _HomePageState extends State<HomePage>
               splashColor: Colors.purple,
               highlightColor: Colors.orangeAccent,
               onPressed: () {
-                loadData();
+                refreshData();
               },
             )
           ],

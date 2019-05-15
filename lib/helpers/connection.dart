@@ -20,4 +20,14 @@ class Connection {
       return temp;
     });
   }
+
+  Future<bool> refresh() async {
+    var uri = api + 'wastedata/refresh';
+    return await http.get(uri).then((http.Response response) async {
+      if (response.statusCode == 201) {
+        return true;
+      }
+      return false;
+    });
+  }
 }
