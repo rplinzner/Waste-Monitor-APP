@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:waste_monitor_app/pages/histogram_page.dart';
 
 import 'home_page.dart';
-import 'some_another_page.dart';
 import 'charts_demo.dart';
+import '../helpers/histogram_object.dart';
 
 class Navigation extends StatefulWidget {
   final double initialFillValue;
-  Navigation({this.initialFillValue = 0});
+  HistogramObject histogramObject = HistogramObject.noData();
+  Navigation({this.initialFillValue = 0, this.histogramObject});
   @override
   State<StatefulWidget> createState() => _NavigationState();
 }
@@ -20,7 +22,7 @@ class _NavigationState extends State<Navigation> {
   void initState() {
     _pages = [
       HomePage(initialValue: widget.initialFillValue),
-      SomePage(),
+      HistogramPage(data: widget.histogramObject),
       ChartsDemo.withSampleData()
     ];
     //_titles = ["Some title", "Some title 2"];

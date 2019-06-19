@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../helpers/data_extractor.dart';
 import 'navigation.dart';
 import 'home_page.dart';
+import '../helpers/histogram_object.dart';
+import '../helpers/connection.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   DataExtractor _dataExtractor = DataExtractor();
+
   @override
   void initState() {
     super.initState();
@@ -20,12 +23,18 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   callHomeScreen() {
+    HistogramObject histogram;
+
+    _dataExtractor.connection.getHistogramData().then((value) {
+      histogram = value;
+    });
     _dataExtractor.getLatestWasteLevel().then((value) {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => Navigation(
                     initialFillValue: value,
+                    histogramObject: histogram,
                   )));
     });
   }
