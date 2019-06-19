@@ -35,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
               builder: (context) => Navigation(
                     initialFillValue: value,
                     histogramObject: histogram,
+                    connection: _dataExtractor.connection,
                   )));
     });
   }

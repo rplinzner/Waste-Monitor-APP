@@ -5,11 +5,14 @@ import 'package:waste_monitor_app/pages/histogram_page.dart';
 import 'home_page.dart';
 import 'charts_demo.dart';
 import '../helpers/histogram_object.dart';
+import '../helpers/connection.dart';
 
 class Navigation extends StatefulWidget {
   final double initialFillValue;
   HistogramObject histogramObject = HistogramObject.noData();
-  Navigation({this.initialFillValue = 0, this.histogramObject});
+  final Connection connection;
+  Navigation(
+      {this.initialFillValue = 0, this.histogramObject, this.connection});
   @override
   State<StatefulWidget> createState() => _NavigationState();
 }
@@ -21,7 +24,10 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     _pages = [
-      HomePage(initialValue: widget.initialFillValue),
+      HomePage(
+        initialValue: widget.initialFillValue,
+        connection: widget.connection,
+      ),
       HistogramPage(data: widget.histogramObject),
       ChartsDemo.withSampleData()
     ];
@@ -75,18 +81,18 @@ class _NavigationState extends State<Navigation> {
                 Icons.access_time,
                 color: Colors.deepPurple,
               ),
-              title: Text("Another Home")),
+              title: Text("Emptying Summary")),
           BubbleBottomBarItem(
               backgroundColor: Colors.deepOrange,
               icon: Icon(
-                Icons.check_circle,
+                Icons.assessment,
                 color: Colors.black,
               ),
               activeIcon: Icon(
-                Icons.check_circle,
+                Icons.assessment,
                 color: Colors.deepOrange,
               ),
-              title: Text("Animated Charts"))
+              title: Text("Waste Summary"))
         ],
       ),
     );

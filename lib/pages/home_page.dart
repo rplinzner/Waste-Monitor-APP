@@ -7,7 +7,8 @@ import '../helpers/connection.dart';
 
 class HomePage extends StatefulWidget {
   final double initialValue;
-  HomePage({this.initialValue = 0});
+  Connection connection;
+  HomePage({this.initialValue = 0, this.connection});
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -21,7 +22,6 @@ class _HomePageState extends State<HomePage>
   double _wasteLevel;
   Color _stateColor;
   DataExtractor _dataExtractor;
-  Connection _connection;
 
   @override
   void initState() {
@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage>
     _nextPercentage = 0.0;
     _wasteLevel = 0.0;
     _dataExtractor = DataExtractor();
-    _connection = Connection();
     setColors();
     initAnimationController();
     _timer = null;
@@ -137,7 +136,7 @@ class _HomePageState extends State<HomePage>
   }
 
   refreshData() {
-    _connection.refresh().then((value) {
+    widget.connection.refresh().then((value) {
       loadData();
     });
   }
