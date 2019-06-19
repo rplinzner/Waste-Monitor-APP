@@ -9,7 +9,7 @@ import '../helpers/connection.dart';
 
 class Navigation extends StatefulWidget {
   final double initialFillValue;
-  HistogramObject histogramObject = HistogramObject.noData();
+  HistogramObject histogramObject;
   final Connection connection;
   Navigation(
       {this.initialFillValue = 0, this.histogramObject, this.connection});
@@ -70,7 +70,10 @@ class _NavigationState extends State<Navigation> {
                 Icons.dashboard,
                 color: Colors.red,
               ),
-              title: Text("Home")),
+              title: Text(
+                "Home",
+                style: TextStyle(fontFamily: 'Montserrat'),
+              )),
           BubbleBottomBarItem(
               backgroundColor: Colors.deepPurple,
               icon: Icon(
@@ -81,7 +84,8 @@ class _NavigationState extends State<Navigation> {
                 Icons.access_time,
                 color: Colors.deepPurple,
               ),
-              title: Text("Emptying Summary")),
+              title: Text("Emptying Summary",
+                  style: TextStyle(fontSize: 10, fontFamily: 'Montserrat'))),
           BubbleBottomBarItem(
               backgroundColor: Colors.deepOrange,
               icon: Icon(
@@ -92,7 +96,8 @@ class _NavigationState extends State<Navigation> {
                 Icons.assessment,
                 color: Colors.deepOrange,
               ),
-              title: Text("Waste Summary"))
+              title: Text("Waste Summary",
+                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 10)))
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import '../helpers/histogram_object.dart';
 
 class HistogramPage extends StatelessWidget {
-  HistogramObject data = HistogramObject.noData();
+  HistogramObject data = HistogramObject();
   HistogramPage({this.data});
   List<DayData> entries = List<DayData>();
   final bool animate = true;

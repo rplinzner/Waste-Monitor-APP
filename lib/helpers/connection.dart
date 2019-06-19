@@ -38,13 +38,13 @@ class Connection {
       print(JSON.jsonDecode(response.body));
       var data = JSON.jsonDecode(response.body);
       var temp = HistogramObject(
-          data['Monday'],
-          data['Tuesday'],
-          data['Wednesday'],
-          data['Thursday'],
-          data['Friday'],
-          data['Saturday'],
-          data['Sunday']);
+          monday: data['Monday'],
+          tuesday: data['Tuesday'],
+          wednesday: data['Wednesday'],
+          thursday: data['Thursday'],
+          friday: data['Friday'],
+          saturday: data['Saturday'],
+          sunday: data['Sunday']);
       return temp;
     });
   }

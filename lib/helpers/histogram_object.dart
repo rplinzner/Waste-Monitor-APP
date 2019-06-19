@@ -1,14 +1,17 @@
 class HistogramObject {
-  int monday = 0;
-  int tuesday = 0;
-  int wednesday = 0;
-  int thursday = 0;
-  int friday = 0;
-  int saturday = 0;
-  int sunday = 0;
-  HistogramObject(this.monday, this.tuesday, this.wednesday, this.thursday,
-      this.friday, this.saturday, this.sunday);
-  factory HistogramObject.noData() {
-    return HistogramObject(0, 0, 0, 0, 0, 0, 0);
-  }
+  int monday;
+  int tuesday;
+  int wednesday;
+  int thursday;
+  int friday;
+  int saturday;
+  int sunday;
+  HistogramObject(
+      {this.monday = 0,
+      this.tuesday = 0,
+      this.wednesday = 0,
+      this.thursday = 0,
+      this.friday = 0,
+      this.saturday = 0,
+      this.sunday});
 }
