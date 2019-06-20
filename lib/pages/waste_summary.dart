@@ -66,6 +66,7 @@ class WasteSummary extends StatelessWidget {
   }
 
   List<charts.Series<SummaryObject, DateTime>> _getData() {
+    data.sort((a, b) => a.month.compareTo(b.month));
     return [
       new charts.Series<SummaryObject, DateTime>(
         id: 'Summary',

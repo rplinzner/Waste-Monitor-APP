@@ -26,14 +26,14 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     List<SummaryObject> mock = [
-      SummaryObject(1, 17),
-      SummaryObject(2, 20),
-      SummaryObject(3, 15),
-      SummaryObject(4, 8),
-      SummaryObject(5, 25),
-      SummaryObject(6, 10),
-      SummaryObject(7, 21),
-      SummaryObject(8, 3),
+      SummaryObject(1, 1),
+      SummaryObject(5, 5),
+      SummaryObject(7, 7),
+      SummaryObject(12, 7),
+      SummaryObject(4, 4),
+      SummaryObject(3, 3),
+      SummaryObject(2, 2),
+      SummaryObject(11, 11),
       SummaryObject(9, 30),
       SummaryObject(10, 20),
     ];
