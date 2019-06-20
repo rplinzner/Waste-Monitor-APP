@@ -3,12 +3,13 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import '../helpers/histogram_object.dart';
 
 class HistogramPage extends StatelessWidget {
-  HistogramObject data = HistogramObject();
+  HistogramObject data;
   HistogramPage({this.data});
   List<DayData> entries = List<DayData>();
   final bool animate = true;
 
   List<charts.Series<DayData, String>> generateEntries() {
+    if (data == null) data = HistogramObject();
     entries.add(DayData("Mon", data.monday));
     entries.add(DayData("Tue", data.tuesday));
     entries.add(DayData("Wed", data.wednesday));
