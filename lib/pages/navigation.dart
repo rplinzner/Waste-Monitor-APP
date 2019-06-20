@@ -3,9 +3,11 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:waste_monitor_app/pages/histogram_page.dart';
 
 import 'home_page.dart';
-import 'charts_demo.dart';
 import '../helpers/histogram_object.dart';
 import '../helpers/connection.dart';
+import 'waste_summary.dart';
+
+import '../helpers/summary_object.dart';
 
 class Navigation extends StatefulWidget {
   final double initialFillValue;
@@ -23,13 +25,26 @@ class _NavigationState extends State<Navigation> {
   //List<String> _titles;
   @override
   void initState() {
+    List<SummaryObject> mock = [
+      SummaryObject(1, 17),
+      SummaryObject(2, 20),
+      SummaryObject(3, 15),
+      SummaryObject(4, 8),
+      SummaryObject(5, 25),
+      SummaryObject(6, 10),
+      SummaryObject(7, 21),
+      SummaryObject(8, 3),
+      SummaryObject(9, 30),
+      SummaryObject(10, 20),
+    ];
+
     _pages = [
       HomePage(
         initialValue: widget.initialFillValue,
         connection: widget.connection,
       ),
       HistogramPage(data: widget.histogramObject),
-      ChartsDemo.withSampleData()
+      WasteSummary(mock)
     ];
     //_titles = ["Some title", "Some title 2"];
     currentIndex = 0;

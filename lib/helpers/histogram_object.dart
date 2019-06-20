@@ -13,5 +13,5 @@ class HistogramObject {
       this.thursday = 0,
       this.friday = 0,
       this.saturday = 0,
-      this.sunday});
+      this.sunday = 0});
 }

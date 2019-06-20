@@ -4,6 +4,7 @@ import 'dart:convert' as JSON;
 
 import 'waste_object.dart';
 import 'histogram_object.dart';
+import 'summary_object.dart';
 
 class Connection {
   final String api = 'http://waste-monitor.azurewebsites.net/api/wastedata/';
@@ -46,6 +47,19 @@ class Connection {
           saturday: data['Saturday'],
           sunday: data['Sunday']);
       return temp;
+    });
+  }
+
+  Future<List<SummaryObject>> getSummaryObjects() async {
+    var uri = api + 'summary';
+    return await http.get(uri).then((http.Response response) async {
+      print(JSON.jsonDecode(response.body));
+      var data = JSON.jsonDecode(response.body);
+      List<SummaryObject> ret = List<SummaryObject>();
+      for (var item in data) {
+        ret.add(SummaryObject(item['item1'], item['item2']));
+      }
+      return ret;
     });
   }
 }
