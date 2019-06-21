@@ -31,7 +31,7 @@ class WasteSummary extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                'Waste of weight monthly',
+                'Weight of waste monthly',
                 style: TextStyle(
                     color: Colors.orange,
                     fontFamily: 'Montserrat',
