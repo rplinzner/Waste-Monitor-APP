@@ -32,13 +32,8 @@ class _HomePageState extends State<HomePage>
     setColors();
     initAnimationController();
     _timer = null;
-    getLatest();
     loadFirst(widget.initialValue);
     super.initState();
-  }
-
-  getLatest() async {
-    widget.initialValue = await _dataExtractor.getLatestWasteLevel();
   }
 
   setColors() {
@@ -47,7 +42,7 @@ class _HomePageState extends State<HomePage>
       return;
     }
     if (_wasteLevel < 90) {
-      _stateColor = Colors.yellow;
+      _stateColor = Colors.orange;
       return;
     }
     _stateColor = Colors.red;
