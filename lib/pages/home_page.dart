@@ -6,7 +6,7 @@ import '../helpers/data_extractor.dart';
 import '../helpers/connection.dart';
 
 class HomePage extends StatefulWidget {
-  final double initialValue;
+  double initialValue;
   Connection connection;
   HomePage({this.initialValue = 0, this.connection});
   @override
@@ -32,8 +32,13 @@ class _HomePageState extends State<HomePage>
     setColors();
     initAnimationController();
     _timer = null;
+    getLatest();
     loadFirst(widget.initialValue);
     super.initState();
+  }
+
+  getLatest() async {
+    widget.initialValue = await _dataExtractor.getLatestWasteLevel();
   }
 
   setColors() {
@@ -144,6 +149,7 @@ class _HomePageState extends State<HomePage>
   loadData() {
     _dataExtractor.getLatestWasteLevel().then((value) {
       _wasteLevel = value * 100;
+      widget.initialValue = value;
       setColors();
       startProgress();
     });

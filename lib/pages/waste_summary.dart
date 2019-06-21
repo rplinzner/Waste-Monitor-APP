@@ -54,6 +54,21 @@ class WasteSummary extends StatelessWidget {
                       behaviorPosition: charts.BehaviorPosition.start,
                       titleOutsideJustification:
                           charts.OutsideJustification.middleDrawArea),
+                  new charts.RangeAnnotation([
+                    charts.LineAnnotationSegment(
+                        data.last.date, charts.RangeAnnotationAxisType.domain,
+                        startLabel: DateTime.now().day.toString() +
+                            '.' +
+                            DateTime.now().month.toString() +
+                            '.' +
+                            DateTime.now().year.toString(),
+                        labelDirection:
+                            charts.AnnotationLabelDirection.horizontal,
+                        labelPosition: charts.AnnotationLabelPosition.auto,
+                        labelAnchor: charts.AnnotationLabelAnchor.start,
+                        labelStyleSpec: charts.TextStyleSpec(
+                            fontFamily: 'Montserrat', fontSize: 15)),
+                  ])
                 ],
                 //behaviors: [charts.RangeAnnotation(annotations)],
               ),
@@ -66,7 +81,7 @@ class WasteSummary extends StatelessWidget {
   }
 
   List<charts.Series<SummaryObject, DateTime>> _getData() {
-    data.sort((a, b) => a.month.compareTo(b.month));
+    data.sort((a, b) => a.date.compareTo(b.date));
     return [
       new charts.Series<SummaryObject, DateTime>(
         id: 'Summary',
@@ -75,7 +90,7 @@ class WasteSummary extends StatelessWidget {
         // areaColorFn specifies that the area skirt will be light blue.
         areaColorFn: (_, __) =>
             charts.MaterialPalette.blue.shadeDefault.lighter,
-        domainFn: (SummaryObject summary, _) => summary.month,
+        domainFn: (SummaryObject summary, _) => summary.date,
         measureFn: (SummaryObject summary, _) => summary.weight,
         data: data,
       )

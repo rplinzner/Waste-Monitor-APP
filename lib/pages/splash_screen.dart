@@ -5,6 +5,7 @@ import '../helpers/data_extractor.dart';
 import 'navigation.dart';
 import 'home_page.dart';
 import '../helpers/histogram_object.dart';
+import '../helpers/summary_object.dart';
 import '../helpers/connection.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,12 +23,19 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 3), () => callHomeScreen());
   }
 
-  callHomeScreen() {
+  callHomeScreen() async {
     HistogramObject histogram;
+    List<SummaryObject> summaries;
 
-    _dataExtractor.connection.getHistogramData().then((value) {
-      histogram = value;
-    });
+    // _dataExtractor.connection.getHistogramData().then((value) {
+    //   histogram = value;
+    // });
+    // _dataExtractor.connection.getSummaryObjects().then((value1) {
+    //   summaries = value1;
+    // });
+    histogram = await _dataExtractor.connection.getHistogramData();
+    summaries = await _dataExtractor.connection.getSummaryObjects();
+
     _dataExtractor.getLatestWasteLevel().then((value) {
       Navigator.pushReplacement(
           context,
@@ -36,6 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     initialFillValue: value,
                     histogramObject: histogram,
                     connection: _dataExtractor.connection,
+                    summaries: summaries,
                   )));
     });
   }

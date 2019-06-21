@@ -13,8 +13,12 @@ class Navigation extends StatefulWidget {
   final double initialFillValue;
   HistogramObject histogramObject;
   final Connection connection;
+  List<SummaryObject> summaries;
   Navigation(
-      {this.initialFillValue = 0, this.histogramObject, this.connection});
+      {this.initialFillValue = 0,
+      this.histogramObject,
+      this.connection,
+      this.summaries});
   @override
   State<StatefulWidget> createState() => _NavigationState();
 }
@@ -25,18 +29,18 @@ class _NavigationState extends State<Navigation> {
   //List<String> _titles;
   @override
   void initState() {
-    List<SummaryObject> mock = [
-      SummaryObject(1, 1),
-      SummaryObject(5, 5),
-      SummaryObject(7, 7),
-      SummaryObject(12, 7),
-      SummaryObject(4, 4),
-      SummaryObject(3, 3),
-      SummaryObject(2, 2),
-      SummaryObject(11, 11),
-      SummaryObject(9, 30),
-      SummaryObject(10, 20),
-    ];
+    // List<SummaryObject> mock = [
+    //   SummaryObject(1, 1),
+    //   SummaryObject(5, 5),
+    //   SummaryObject(7, 7),
+    //   SummaryObject(12, 7),
+    //   SummaryObject(4, 4),
+    //   SummaryObject(3, 3),
+    //   SummaryObject(2, 2),
+    //   SummaryObject(11, 11),
+    //   SummaryObject(9, 30),
+    //   SummaryObject(10, 20),
+    // ];
 
     _pages = [
       HomePage(
@@ -44,7 +48,7 @@ class _NavigationState extends State<Navigation> {
         connection: widget.connection,
       ),
       HistogramPage(data: widget.histogramObject),
-      WasteSummary(mock)
+      WasteSummary(widget.summaries)
     ];
     //_titles = ["Some title", "Some title 2"];
     currentIndex = 0;

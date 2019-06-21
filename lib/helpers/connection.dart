@@ -57,7 +57,7 @@ class Connection {
       var data = JSON.jsonDecode(response.body);
       List<SummaryObject> ret = List<SummaryObject>();
       for (var item in data) {
-        ret.add(SummaryObject(item['item1'], item['item2']));
+        ret.add(SummaryObject(item['item1'], item['item2'], item['item3']));
       }
       return ret;
     });

@@ -1,12 +1,9 @@
-import 'months_enum.dart';
-
 class SummaryObject {
   //String month;
-  DateTime month;
-  int weight;
-  SummaryObject(int month, this.weight) {
+  DateTime date;
+  double weight;
+  SummaryObject(int month, this.weight, int year) {
     //this.month = Months.values[month-1].toString().split('.').last;
-    //TODO: add year
-    this.month = DateTime(2018, month = month);
+    this.date = DateTime(year, month = month);
   }
 }
